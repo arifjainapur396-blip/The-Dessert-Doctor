@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cake Shop</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#fff7f2}
+
+header{
+  position:sticky;
+  top:0;
+  background:#7b2d43;
+  color:#fff;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  z-index:999;
+}
+
+.logo{display:flex;align-items:center;gap:10px}
+
+.logo img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #fff;
+}
+
+.logo span{
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* PREMIUM HERO */
+.hero{
+  min-height:65vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  padding:20px;
+  color:#fff;
+  overflow:hidden;
+}
+
+/* CLEAR RICH BACKGROUND */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+    url("logo.jpeg") center/cover no-repeat;
+  filter:blur saturate(120%) brightness(0.8);
+  transform:scale(1.2);
+  z-index:-2;
+}
+
+/* CENTER FULL IMAGE */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%),
+    url("First.jpeg") center/contain no-repeat;
+  z-index:-1;
+}
+
+.hero h1{
+  font-size:30px;
+  max-width:300px;
+  text-shadow:0 3px 10px rgba(0,0,0,.7);
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .hero{
+    min-height:55vh;
+    padding:15px;
+  }
+
+  .hero h1{
+    font-size:24px;
+    line-height:1.2;
+  }
+
+  .logo img{
+    width:42px;
+    height:42px;
+  }
+
+  .logo span{
+    font-size:17px;
+  }
+}
+
+section{padding:30px}
+
+section h2{
+  color:#7b2d43;
+  margin-bottom:20px;
+}
+
+.cakes{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:15px;
+}
+
+.card{
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 6px 15px rgba(0,0,0,.1);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:contain;
+  background:#fff;
+  padding:10px;
+}
+
+.card-content{
+  padding:15px;
+}
+
+.price{
+  font-weight:bold;
+  margin:10px 0;
+  color:#7b2d43;
+  line-height:1.6;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  background:#7b2d43;
+  color:#fff;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+.order-box{
+  background:#fff;
+  padding:20px;
+  border-radius:15px;
+  margin-top:20px;
+}
+
+.order-box input,
+.order-box select,
+.order-box textarea{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+
+.total-box{
+  background:#fff1f5;
+  color:#7b2d43;
+  padding:12px;
+  border-radius:10px;
+  margin:8px 0 14px;
+  font-size:18px;
+  font-weight:bold;
+  border:1px solid #f0c4d0;
+}
+
+.float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:55px;
+  height:55px;
+  background:#25D366;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  color:#fff;
+  cursor:pointer;
+  z-index:999;
+}
+
+@media(min-width:768px){
+  .cakes{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="logo.jpeg" alt="Logo">
+    <span>The Dessert Doctor</span>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Order Cakes on WhatsApp</h1>
+</section>
+
+<section>
+
+<h2>Our Cakes</h2>
+
+<div class="cakes">
+
+  <div class="card">
+    <img src="3.jpeg" alt="Bride Theme Designer Cake">
+    <div class="card-content">
+      <h3>Bride Theme Designer Cake</h3>
+      <div class="price">500g - ₹599<br>1kg - ₹1099</div>
+      <button onclick="selectCake('Bride Theme Designer Cake')">Order</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="1.jpeg" alt="Bride To Be Cake">
+    <div class="card-content">
+      <h3>Bride To Be Cake</h3>
+      <div class="price">500g - ₹499<br>1kg - ₹899</div>
+      <button onclick="selectCake('Bride To Be Cake')">Order</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="2.jpeg" alt="Anniversary Special Cake">
+    <div class="card-content">
+      <h3>Anniversary Special Cake</h3>
+      <div class="price">500g - ₹549<br>1kg - ₹999</div>
+      <button onclick="selectCake('Anniversary Special Cake')">Order</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="order-box">
+  <h3>Place Order</h3>
+
+  <input id="name" placeholder="Name">
+  <input id="phone" placeholder="Phone">
+
+  <select id="cake" onchange="updateAmount()">
+    <option value="">Select Cake</option>
+    <option value="Bride Theme Designer Cake">Bride Theme Designer Cake</option>
+    <option value="Bride To Be Cake">Bride To Be Cake</option>
+    <option value="Anniversary Special Cake">Anniversary Special Cake</option>
+  </select>
+
+  <select id="weight" onchange="updateAmount()">
+    <option value="">Weight</option>
+    <option value="500g">500g</option>
+    <option value="1kg">1kg</option>
+  </select>
+
+  <div class="total-box" id="amountBox">Amount: ₹0</div>
+
+  <input type="date" id="date">
+  <textarea id="msg" placeholder="Address / Message"></textarea>
+
+  <button onclick="sendWA()" style="background:#25D366">Send to WhatsApp</button>
+</div>
+
+</section>
+
+<div class="float" onclick="sendWA()">💬</div>
+
+<script>
+const cakePrices = {
+  "Bride Theme Designer Cake": {
+    "500g": 599,
+    "1kg": 1099
+  },
+  "Bride To Be Cake": {
+    "500g": 499,
+    "1kg": 899
+  },
+  "Anniversary Special Cake": {
+    "500g": 549,
+    "1kg": 999
+  }
+};
+
+function selectCake(cake){
+  document.getElementById("cake").value = cake;
+  document.getElementById("weight").value = "";
+  updateAmount();
+
+  window.scrollTo({
+    top:document.body.scrollHeight,
+    behavior:"smooth"
+  });
+}
+
+function updateAmount(){
+  let cake = document.getElementById("cake").value;
+  let weight = document.getElementById("weight").value;
+  let amountBox = document.getElementById("amountBox");
+
+  if(cake && weight){
+    let amount = cakePrices[cake][weight];
+    amountBox.innerHTML = "Amount: ₹" + amount;
+  }else{
+    amountBox.innerHTML = "Amount: ₹0";
+  }
+}
+
+function sendWA(){
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let cake = document.getElementById("cake").value;
+  let weight = document.getElementById("weight").value;
+  let date = document.getElementById("date").value;
+  let msg = document.getElementById("msg").value;
+
+  if(!name || !phone || !cake || !weight || !date){
+    alert("Fill all details");
+    return;
+  }
+
+  let amount = cakePrices[cake][weight];
+
+  let text =
+  "Cake Order:\n" +
+  "Name: " + name + "\n" +
+  "Phone: " + phone + "\n" +
+  "Cake: " + cake + "\n" +
+  "Weight: " + weight + "\n" +
+  "Amount: ₹" + amount + "\n" +
+  "Date: " + date + "\n" +
+  "Details: " + msg;
+
+  window.location.href =
+  "https://wa.me/916361600755?text=" + encodeURIComponent(text);
+}
+</script>
+
+</body>
+</html>
